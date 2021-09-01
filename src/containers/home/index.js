@@ -8,7 +8,7 @@ const Home = (props) => {
       <div>{Strings.getString("home.message")}</div>
       <div>
         {Strings.formatString(Strings.getString("home.userMessage"), {
-          user: "user_name",
+          user: "name",
         })}
       </div>
     </Styled.screenContainer>
