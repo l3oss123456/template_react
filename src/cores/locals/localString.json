@@ -1,0 +1,10 @@
+{
+  "home.message": {
+    "en": "Welcome to home page",
+    "th": "ยินดีต้อนรับสู่หน้าโฮม"
+  },
+  "home.userMessage": {
+    "en": "Welcome {user}",
+    "th": "ยินดีต้อนรับ {user}"
+  }
+}
