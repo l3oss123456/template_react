@@ -1,4 +1,8 @@
 {
+  "menubar1": {
+    "en": "Home",
+    "th": "โฮม"
+  },
   "home.message": {
     "en": "Welcome to home page",
     "th": "ยินดีต้อนรับสู่หน้าโฮม"
