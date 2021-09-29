@@ -2,7 +2,7 @@ import styled from "styled-components";
 import THEME from "../../cores/theme/index";
 
 export default {
-  screenContainer: styled.div`
+  ScreenContainer: styled.div`
     margin: 30px 100px 100px;
     display: flex;
     flex-direction: column;

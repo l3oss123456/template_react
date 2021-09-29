@@ -4,14 +4,14 @@ import Styled from "./styles";
 
 const Home = (props) => {
   return (
-    <Styled.screenContainer>
+    <Styled.ScreenContainer>
       <div>{Strings.getString("home.message")}</div>
       <div>
         {Strings.formatString(Strings.getString("home.userMessage"), {
           user: "name",
         })}
       </div>
-    </Styled.screenContainer>
+    </Styled.ScreenContainer>
   );
 };
 export default Home;
