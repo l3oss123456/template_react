@@ -1,13 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "../../containers/home/index";
-import Menubar from "./menuBar";
-
-const _Home = () => (
-  <Menubar>
-    <Home />
-  </Menubar>
-);
+import { _Home } from "./pageComponents";
 
 const Routes = () => {
   return (
