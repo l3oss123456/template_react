@@ -1,215 +1,175 @@
-import React, { useState } from "react";
-import { Layout, Menu } from "antd";
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
+import React, { useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import "./Menubar.modules.css";
+import { Select } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
+import Images from "../Images";
+import { Strings } from "../../cores/locals";
+import { editLanguage } from "../../actions/language";
+import { editTheme } from "../../actions/theme";
+import { useOutsideAlerter } from "../../helper/global";
+import { colors } from "../../cores/theme";
+import Styles from "./styles";
 
-const MenuBar = ({ defaultSelectedKeys = "1", children }) => {
-  const [collapsed, setCollapsed] = useState(false);
+const { Option } = Select;
+
+const MenuBar = ({ children }) => {
+  const dispatch = useDispatch();
+  const language = useSelector((state) => state.language);
+  const theme = useSelector((state) => state.theme);
+
   const [displayHamburgerMenu, setDisplayHamburgerMenu] = useState(false);
-  const collapsedIconStyle = {
-    cursor: "pointer",
-    fontSize: 20,
-  };
+
+  const HamburgerRef = useRef(null);
+  useOutsideAlerter(HamburgerRef, () => {
+    setDisplayHamburgerMenu(false);
+  });
+
   const listMenu = [
     {
-      name: `home`,
+      name: Strings.getString(`menubar.home`),
       link: `/`,
     },
     {
-      name: `about-us`,
+      name: Strings.getString(`menubar.aboutus`),
       link: `/about-us`,
     },
     {
-      name: `contact`,
+      name: Strings.getString(`menubar.contact`),
       link: `/contact`,
     },
   ];
 
   const renderLogo = () => {
     return (
-      <div className="logo-section">
-        <img
-          src="/images/garbriel.jpeg"
-          alt="..."
-          style={{
-            width: 80,
-          }}
-        />
-      </div>
+      <Link to={`/`}>
+        <Styles.LogoSection>
+          <Images name={`icon.logo`} />
+        </Styles.LogoSection>
+      </Link>
     );
   };
   const renderMenu = () => {
     return (
-      <div className="menu-section">
+      <Styles.MenuSection>
         {listMenu.map((menu, index) => {
           return (
-            <Link to={menu.link}>
-              <div
-                key={index}
-                className="menu"
+            <Link to={menu.link} key={index}>
+              <Styles.Menu
+                theme={theme}
                 style={{
                   marginLeft:
                     index > 0 && index < listMenu.length ? `20px` : null,
                 }}
               >
                 {menu.name}
-              </div>
+              </Styles.Menu>
             </Link>
           );
         })}
-      </div>
+      </Styles.MenuSection>
     );
   };
   const renderHamburgerMenu = () => {
     return (
-      <div
-        className="hamburger-section"
-        onClick={() => setDisplayHamburgerMenu(!displayHamburgerMenu)}
+      <Styles.HamburgerSection
+        onClick={() => setDisplayHamburgerMenu(true)}
+        ref={HamburgerRef}
       >
-        <MenuOutlined style={{ cursor: `pointer`, fontSize: `1.2rem` }} />
-        <div
-          className="hamburger-menu-container"
+        <MenuOutlined
           style={{
-            // background: `lightgray`,
-            // position: `absolute`,
-            // right: 0,
-            // bottom: -110,
-            // transition: `all 0.3s ease-out`,
-            // padding: 10,
-            // width: `max-content`,
-            // display: `flex`,
-            // flexDirection: `column`,
+            cursor: `pointer`,
+            fontSize: `1.2rem`,
+            color: colors.white,
+          }}
+        />
+        <hamburger-menu-container
+          style={{
             opacity: displayHamburgerMenu === true ? 1 : 0,
           }}
         >
           {listMenu.map((menu, index) => {
             return (
-              <Link to={menu.link}>
-                <div
-                  key={index}
-                  className="menu"
+              <Link to={menu.link} key={index}>
+                <Styles.Menu
+                  onClick={() => setDisplayHamburgerMenu(!displayHamburgerMenu)}
                   style={{
+                    color: colors.black,
                     marginTop:
                       index > 0 && index < listMenu.length ? `5px` : null,
                   }}
                 >
                   {menu.name}
-                </div>
+                </Styles.Menu>
               </Link>
             );
           })}
-        </div>
-      </div>
+
+          <div style={{ marginTop: 30 }}>
+            <Select
+              defaultValue={language}
+              onChange={(value) => dispatch(editLanguage(value))}
+            >
+              <Option value="en">EN</Option>
+              <Option value="th">TH</Option>
+            </Select>
+
+            <Select
+              defaultValue={theme}
+              onChange={(value) => dispatch(editTheme(value))}
+              style={{ marginLeft: 20 }}
+            >
+              <Option value="light">Light</Option>
+              <Option value="dark">Dark</Option>
+            </Select>
+            {renderLanguageDropdown()}
+          </div>
+        </hamburger-menu-container>
+      </Styles.HamburgerSection>
+    );
+  };
+  const renderLanguageDropdown = () => {
+    return (
+      <Styles.SelectedSection>
+        <Select
+          defaultValue={language}
+          onChange={(value) => dispatch(editLanguage(value))}
+          style={{ marginLeft: 20 }}
+        >
+          <Option value="en">EN</Option>
+          <Option value="th">TH</Option>
+        </Select>
+      </Styles.SelectedSection>
+    );
+  };
+  const renderThemeDropdown = () => {
+    return (
+      <Styles.SelectedSection>
+        <Select
+          defaultValue={theme}
+          onChange={(value) => dispatch(editTheme(value))}
+          style={{ marginLeft: 20 }}
+        >
+          <Option value="light">Light</Option>
+          <Option value="dark">Dark</Option>
+        </Select>
+      </Styles.SelectedSection>
     );
   };
 
   return (
     <>
-      <div className="menu-container">
+      <Styles.MenuContainer theme={theme}>
         {renderLogo()}
-        {renderMenu()}
-        {renderHamburgerMenu()}
-      </div>
-
-      <div className="container">{children}</div>
+        <div style={{ display: `flex`, alignItems: "center" }}>
+          {renderMenu()}
+          {renderHamburgerMenu()}
+          {renderLanguageDropdown()}
+          {renderThemeDropdown()}
+        </div>
+      </Styles.MenuContainer>
+      <Styles.PageContainer theme={theme}>{children}</Styles.PageContainer>
     </>
   );
 };
 export default MenuBar;
-
-// const { Header, Sider, Content } = Layout;
-
-// const ImageContainer = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin: 20px 0px 30px 0px;
-// `;
-
-// const ImageLayout = styled.img`
-//   height: 100px;
-//   width: 100px;
-// `;
-
-// const MenuBar = ({ defaultSelectedKeys = "1", children }) => {
-//   const [collapsed, setCollapsed] = useState(false);
-//   const collapsedIconStyle = {
-//     cursor: "pointer",
-//     fontSize: 20,
-//   };
-//   return (
-//     <Layout>
-//       <Sider
-//         theme="light"
-//         trigger={null}
-//         collapsible
-//         collapsed={collapsed}
-//         breakpoint="lg"
-//         collapsedWidth="80"
-//       >
-//         <ImageContainer>
-//           {!collapsed && <ImageLayout src={"image"} />}
-//         </ImageContainer>
-//         <div className="logo" />
-//         <Menu
-//           theme="light"
-//           mode="inline"
-//           defaultSelectedKeys={defaultSelectedKeys}
-//         >
-//           <Menu.Item key="1" icon={<UserOutlined />}>
-//             nav 1
-//           </Menu.Item>
-//           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-//             nav 2
-//           </Menu.Item>
-//           <Menu.Item key="3" icon={<UploadOutlined />}>
-//             nav 3
-//           </Menu.Item>
-//         </Menu>
-//       </Sider>
-//       <Layout
-//         className="site-layout"
-//         style={{
-//           height: window.innerHeight,
-//           position: "relative",
-//           backgroundColor: "white",
-//         }}
-//       >
-//         <Header style={{ paddingLeft: 30, backgroundColor: "white" }}>
-//           <div>
-//             {collapsed ? (
-//               <MenuUnfoldOutlined
-//                 onClick={() => setCollapsed(!collapsed)}
-//                 style={{ ...collapsedIconStyle }}
-//               />
-//             ) : (
-//               <MenuFoldOutlined
-//                 onClick={() => setCollapsed(!collapsed)}
-//                 style={{ ...collapsedIconStyle }}
-//               />
-//             )}
-//           </div>
-//         </Header>
-//         <Content
-//           style={{
-//             margin: "24px 16px",
-//             padding: 24,
-//             minHeight: 280,
-//           }}
-//         >
-//           {children}
-//         </Content>
-//       </Layout>
-//     </Layout>
-//   );
-// };
-// export default MenuBar;

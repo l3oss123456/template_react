@@ -15,7 +15,7 @@ const AboutUs = () => {
   return (
     <div style={{ display: `flex`, flexDirection: `column` }}>
       {data.map((item, index) => {
-        return <div>{item}</div>;
+        return <div key={index}>{item}</div>;
       })}
     </div>
   );

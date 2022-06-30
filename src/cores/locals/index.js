@@ -1,7 +1,11 @@
 import defaultStrings from "./localString.json";
+import { useSelector } from "react-redux";
 
 const getString = (label, printWarning = true) => {
-  const languageCode = process.env.REACT_APP_LANGUAGE_CODE;
+  const GetCurrentLanguage = () => useSelector((state) => state.language);
+  // const languageCode = process.env.REACT_APP_LANGUAGE_CODE;
+  const languageCode = GetCurrentLanguage().toLowerCase();
+
   if (strings[label]) {
     return strings[label][languageCode]
       ? strings[label][languageCode]
