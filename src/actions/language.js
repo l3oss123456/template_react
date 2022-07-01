@@ -1,3 +1,5 @@
+import { setLocalStorage } from "../utils/storage";
+
 export const set_data = (post) => {
   return {
     type: "SET_LANGUAGE",
@@ -20,6 +22,7 @@ export const receive_error = (error) => {
 export const editLanguage = (data) => {
   return async (dispatch, getState) => {
     try {
+      setLocalStorage(`language`, data);
       dispatch(set_data(data));
     } catch (error) {
       dispatch(receive_error(error));

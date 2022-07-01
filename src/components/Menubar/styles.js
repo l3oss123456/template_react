@@ -4,7 +4,7 @@ import { colors } from "../../cores/theme/index";
 
 export default {
   PageContainer: styled.div`
-    padding: 40px 40px 0px;
+    padding: 130px 40px 20px;
     background-color: ${(props) =>
       props.theme && props.theme === "light" ? colors.white : colors.primary};
     color: ${(props) =>
@@ -19,9 +19,10 @@ export default {
       props.theme && props.theme === "light"
         ? colors.black
         : colors.blackRussian};
-    // position: fixed;
-    position: -webkit-sticky;
-    position: sticky;
+    position: -webkit-fixed;
+    position: fixed;
+    // position: -webkit-sticky;
+    // position: sticky;
     top: 0;
     width: 100vw;
     padding: 15px 40px;

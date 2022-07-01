@@ -1,6 +1,8 @@
+import { getLocalStorage } from "../utils/storage";
+
 const languageReducer = (
   //   state = process.env.REACT_APP_LANGUAGE_CODE,
-  state = `en`,
+  state = getLocalStorage(`language`) ? getLocalStorage(`language`) : `en`,
   action
 ) => {
   switch (action.type) {
