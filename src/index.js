@@ -6,10 +6,14 @@ import * as serviceWorker from "./serviceWorker";
 import Routes from "./cores/routes/index";
 import store from "./store";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
+import theme from "./cores/theme";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Routes />
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

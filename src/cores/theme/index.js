@@ -18,13 +18,19 @@ export const colors = {
   submit: "#2ede3c",
 };
 export const fontFamily = {
-  primary: "Proxima Nova Soft",
-  primaryBold: "Proxima Nova Soft Bold",
+  primary: "ProximaNova-Regular",
+  primaryBold: "Proxima Nova Bold",
+
+  // primary: "Roboto-Regular",
+  // primaryBold: "Roboto-Bold",
 };
 
 export const fontSize = {
-  title: "50px",
-  text: "16px",
+  mainTitle: `clamp(38px, 5vw, 42px)`,
+  title: `clamp(24px, 2.5vw, 28px)`,
+  subTitle: `clamp(18px, 2vw, 20px)`,
+  text: `16px`,
+  details: `12px`,
 };
 
 export default {

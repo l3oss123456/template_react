@@ -1,34 +1,45 @@
 import styled from "styled-components";
 import responsive from "../../utils/responsive";
-import { colors } from "../../cores/theme/index";
 import { getLocalStorage } from "../../utils/storage";
 
 export default {
   PageContainer: styled.div`
-    padding: 130px 40px 20px;
-    background-color: ${() =>
-      getLocalStorage(`theme`) === `light` ? colors.white : colors.primary};
-    color: ${() =>
-      getLocalStorage(`theme`) === "light" ? colors.black : colors.white};
+    font-family: ${(props) => props.theme.fontFamily.primary};
+    padding: 130px 8% 20px;
+    background-color: ${(props) =>
+      getLocalStorage(`theme`) === `light`
+        ? props.theme.colors.white
+        : props.theme.colors.primary};
+    color: ${(props) =>
+      getLocalStorage(`theme`) === "light"
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     width: 100vw;
     height: 100vh;
     overflow: auto;
     transition: all 0.5s ease-out;
+    position: relative;
+    // z-index: 0;
   `,
   MenuContainer: styled.div`
-    background-color: ${() =>
+    background-color: ${(props) =>
       getLocalStorage(`theme`) === "light"
-        ? colors.black
-        : colors.blackRussian};
+        ? props.theme.colors.black
+        : props.theme.colors.blackRussian};
     position: -webkit-fixed;
     position: fixed;
     top: 0;
     width: 100vw;
-    padding: 15px 40px;
+    padding: 15px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: 0.5s ease-out;
+    z-index: 100;
+
+    @media ${responsive.sm} {
+      padding: 15px 3%;
+    }
 
     @media (max-width: 300px) {
       padding: 15px 10px;
@@ -40,7 +51,7 @@ export default {
   LogoSection: styled.div`
     cursor: pointer;
 
-    @media (max-width: 300px) {
+    @media ${responsive.xs} {
       display: none;
     }
   `,
@@ -64,33 +75,39 @@ export default {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
     top: 0;
     right: 0;
-    background: #fcfcfc;
+    background-color: ${(props) =>
+      getLocalStorage(`theme`) === `light`
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     overflow-x: hidden;
     transition: 0.5s;
 
     header-side-nav-container {
       width: 100%;
-      padding: 5% 5% 0%;
+      padding: 5% 5% 0px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      color: ${colors.black};
     }
 
     content-side-nav-container {
-      padding: 8% 5% 0%;
+      margin: 8% 5% 0%;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
 
-      span {
-        color: white;
-        font-size: 25px;
-        color: ${colors.black};
+      a {
+        font-family: ${(props) => props.theme.fontFamily.primary};
+        font-size: ${(props) => props.theme.fontSize.subTitle};
+        // line-height: 2.5rem;
+        color: ${(props) =>
+          getLocalStorage(`theme`) === "light"
+            ? props.theme.colors.white
+            : props.theme.colors.black};
+        margin: 10px 0px;
         text-decoration: none;
         transition: 0.3s;
 
@@ -116,7 +133,8 @@ export default {
     }
   `,
   Menu: styled.div`
-    font-size: 1rem;
+    font-size: ${(props) => props.theme.fontSize.subTitle};
+    font-family: ${(props) => props.theme.fontFamily.primary};
     cursor: pointer;
     transition: 0.2s ease-in;
     color: white;

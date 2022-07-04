@@ -18,6 +18,7 @@ const Loading = ({ loading = false }) => {
           alignItems: `center`,
           opacity: 0.2,
           background: colors.black,
+          zIndex: 999,
         }}
       ></div>
       <div

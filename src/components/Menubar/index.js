@@ -9,7 +9,7 @@ import { editLanguage } from "../../actions/language";
 import { editTheme } from "../../actions/theme";
 import { useOutsideAlerter, useWindowSize } from "../../helper/global";
 import responsive from "../../utils/responsive";
-import { colors } from "../../cores/theme";
+import { colors, fontFamily, fontSize } from "../../cores/theme";
 import Styles from "./styles";
 
 const { Option } = Select;
@@ -65,7 +65,6 @@ const MenuBar = ({ children }) => {
           return (
             <Link to={menu.link} key={index}>
               <Styles.Menu
-                theme={theme}
                 style={{
                   marginLeft:
                     index > 0 && index < listMenu.length ? `20px` : null,
@@ -108,7 +107,8 @@ const MenuBar = ({ children }) => {
               style={{
                 cursor: `pointer`,
                 fontSize: `1.2rem`,
-                color: colors.black,
+                // color: colors.white,
+                color: theme === `light` ? colors.white : colors.black,
               }}
             />
           </header-side-nav-container>
@@ -117,15 +117,22 @@ const MenuBar = ({ children }) => {
             {listMenu.map((menu, index) => {
               return (
                 <Link to={menu.link} key={index}>
-                  <span>{menu.name}</span>
+                  {menu.name}
+                  <div
+                    style={{
+                      border: `1px solid lightgray`,
+                      marginTop: 5,
+                    }}
+                  />
                 </Link>
               );
             })}
           </content-side-nav-container>
 
           <footer-side-nav-container>
-            {languageDropdown()}
+            {languageDropdown({ marginLeft: 0 })}
             {themeDropdown()}
+            {/* <button>login</button> */}
           </footer-side-nav-container>
         </Styles.SideNav>
       </>
@@ -139,24 +146,34 @@ const MenuBar = ({ children }) => {
   const renderThemeDropdown = () => {
     return <Styles.SelectedSection>{themeDropdown()}</Styles.SelectedSection>;
   };
-  const languageDropdown = () => {
+  const languageDropdown = (style = {}) => {
     return (
       <Select
         value={language}
         onChange={(value) => dispatch(editLanguage(value))}
-        style={{ marginLeft: 20 }}
+        style={{
+          marginLeft: 20,
+          ...style,
+          fontFamily: fontFamily.primary,
+          fontSize: fontSize.subTitle - 10,
+        }}
       >
         <Option value="en">EN</Option>
         <Option value="th">TH</Option>
       </Select>
     );
   };
-  const themeDropdown = () => {
+  const themeDropdown = (style = {}) => {
     return (
       <Select
         value={theme}
         onChange={(value) => dispatch(editTheme(value))}
-        style={{ marginLeft: 20 }}
+        style={{
+          marginLeft: 20,
+          ...style,
+          fontFamily: fontFamily.primary,
+          fontSize: fontSize.subTitle - 10,
+        }}
       >
         <Option value="light">Light</Option>
         <Option value="dark">Dark</Option>
@@ -175,7 +192,15 @@ const MenuBar = ({ children }) => {
           {renderThemeDropdown()}
         </div>
       </Styles.MenuContainer>
-      <Styles.PageContainer>{children}</Styles.PageContainer>
+      <Styles.PageContainer>
+        <div
+          style={{
+            opacity: displayHamburgerMenu === true ? 0.3 : 1,
+          }}
+        >
+          {children}
+        </div>
+      </Styles.PageContainer>
     </>
   );
 };
