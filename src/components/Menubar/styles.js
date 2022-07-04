@@ -1,28 +1,27 @@
 import styled from "styled-components";
 import responsive from "../../utils/responsive";
 import { colors } from "../../cores/theme/index";
+import { getLocalStorage } from "../../utils/storage";
 
 export default {
   PageContainer: styled.div`
     padding: 130px 40px 20px;
-    background-color: ${(props) =>
-      props.theme && props.theme === "light" ? colors.white : colors.primary};
-    color: ${(props) =>
-      props.theme && props.theme === "light" ? colors.black : colors.white};
+    background-color: ${() =>
+      getLocalStorage(`theme`) === `light` ? colors.white : colors.primary};
+    color: ${() =>
+      getLocalStorage(`theme`) === "light" ? colors.black : colors.white};
     width: 100vw;
     height: 100vh;
     overflow: auto;
-    transition: 0.5s ease-out;
+    transition: all 0.5s ease-out;
   `,
   MenuContainer: styled.div`
-    background-color: ${(props) =>
-      props.theme && props.theme === "light"
+    background-color: ${() =>
+      getLocalStorage(`theme`) === "light"
         ? colors.black
         : colors.blackRussian};
     position: -webkit-fixed;
     position: fixed;
-    // position: -webkit-sticky;
-    // position: sticky;
     top: 0;
     width: 100vw;
     padding: 15px 40px;
@@ -56,22 +55,59 @@ export default {
     display: none;
     position: relative;
 
-    hamburger-menu-container {
-      background-color: white;
-      color: black;
-      position: absolute;
-      right: 0px;
-      bottom: -180px;
-      transition: all 0.2s ease-out;
-      padding: 10px 20px;
-      width: max-content;
-      display: flex;
-      flex-direction: column;
-    }
-
     @media ${responsive.xs} {
       display: flex;
       justify-content: flex-end;
+    }
+  `,
+  SideNav: styled.div`
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background: #fcfcfc;
+    overflow-x: hidden;
+    transition: 0.5s;
+
+    header-side-nav-container {
+      width: 100%;
+      padding: 5% 5% 0%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: ${colors.black};
+    }
+
+    content-side-nav-container {
+      padding: 8% 5% 0%;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      span {
+        color: white;
+        font-size: 25px;
+        color: ${colors.black};
+        text-decoration: none;
+        transition: 0.3s;
+
+        &:hover {
+          opacity: 0.3;
+        }
+      }
+    }
+
+    footer-side-nav-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0% 5% 5%;
+      display: flex;
+      flex-wrap: wrap;
     }
   `,
   SelectedSection: styled.div`

@@ -1,13 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Select } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import Images from "../Images";
 import { Strings } from "../../cores/locals";
 import { editLanguage } from "../../actions/language";
 import { editTheme } from "../../actions/theme";
-import { useOutsideAlerter } from "../../helper/global";
+import { useOutsideAlerter, useWindowSize } from "../../helper/global";
+import responsive from "../../utils/responsive";
 import { colors } from "../../cores/theme";
 import Styles from "./styles";
 
@@ -20,8 +21,16 @@ const MenuBar = ({ children }) => {
 
   const [displayHamburgerMenu, setDisplayHamburgerMenu] = useState(false);
 
-  const HamburgerRef = useRef(null);
-  useOutsideAlerter(HamburgerRef, () => {
+  const { width } = useWindowSize();
+
+  useEffect(() => {
+    if (width && width.toString() > responsive.xs) {
+      setDisplayHamburgerMenu(false);
+    }
+  }, [width]);
+
+  const sideNavRef = useRef(null);
+  useOutsideAlerter(sideNavRef, () => {
     setDisplayHamburgerMenu(false);
   });
 
@@ -72,94 +81,92 @@ const MenuBar = ({ children }) => {
   };
   const renderHamburgerMenu = () => {
     return (
-      <Styles.HamburgerSection
-        onClick={() => setDisplayHamburgerMenu(true)}
-        ref={HamburgerRef}
-      >
-        <MenuOutlined
+      <>
+        <Styles.HamburgerSection
+          onClick={() => setDisplayHamburgerMenu(!displayHamburgerMenu)}
+        >
+          <MenuOutlined
+            style={{
+              cursor: `pointer`,
+              fontSize: `1.2rem`,
+              color: colors.white,
+            }}
+          />
+        </Styles.HamburgerSection>
+
+        <Styles.SideNav
+          ref={sideNavRef}
           style={{
-            cursor: `pointer`,
-            fontSize: `1.2rem`,
-            color: colors.white,
-          }}
-        />
-        <hamburger-menu-container
-          style={{
-            opacity: displayHamburgerMenu === true ? 1 : 0,
+            width: displayHamburgerMenu === true ? `80vw` : `0vw`,
           }}
         >
-          {listMenu.map((menu, index) => {
-            return (
-              <Link to={menu.link} key={index}>
-                <Styles.Menu
-                  onClick={() => setDisplayHamburgerMenu(!displayHamburgerMenu)}
-                  style={{
-                    color: colors.black,
-                    marginTop:
-                      index > 0 && index < listMenu.length ? `5px` : null,
-                  }}
-                >
-                  {menu.name}
-                </Styles.Menu>
-              </Link>
-            );
-          })}
+          <header-side-nav-container>
+            <Images name={`icon.logo`} width={60} height={60} />
 
-          <div style={{ marginTop: 30 }}>
-            <Select
-              defaultValue={language}
-              onChange={(value) => dispatch(editLanguage(value))}
-            >
-              <Option value="en">EN</Option>
-              <Option value="th">TH</Option>
-            </Select>
+            <CloseOutlined
+              onClick={() => setDisplayHamburgerMenu(false)}
+              style={{
+                cursor: `pointer`,
+                fontSize: `1.2rem`,
+                color: colors.black,
+              }}
+            />
+          </header-side-nav-container>
 
-            <Select
-              defaultValue={theme}
-              onChange={(value) => dispatch(editTheme(value))}
-              style={{ marginLeft: 20 }}
-            >
-              <Option value="light">Light</Option>
-              <Option value="dark">Dark</Option>
-            </Select>
-            {renderLanguageDropdown()}
-          </div>
-        </hamburger-menu-container>
-      </Styles.HamburgerSection>
+          <content-side-nav-container>
+            {listMenu.map((menu, index) => {
+              return (
+                <Link to={menu.link} key={index}>
+                  <span>{menu.name}</span>
+                </Link>
+              );
+            })}
+          </content-side-nav-container>
+
+          <footer-side-nav-container>
+            {languageDropdown()}
+            {themeDropdown()}
+          </footer-side-nav-container>
+        </Styles.SideNav>
+      </>
     );
   };
   const renderLanguageDropdown = () => {
     return (
-      <Styles.SelectedSection>
-        <Select
-          defaultValue={language}
-          onChange={(value) => dispatch(editLanguage(value))}
-          style={{ marginLeft: 20 }}
-        >
-          <Option value="en">EN</Option>
-          <Option value="th">TH</Option>
-        </Select>
-      </Styles.SelectedSection>
+      <Styles.SelectedSection>{languageDropdown()}</Styles.SelectedSection>
     );
   };
   const renderThemeDropdown = () => {
+    return <Styles.SelectedSection>{themeDropdown()}</Styles.SelectedSection>;
+  };
+  const languageDropdown = () => {
     return (
-      <Styles.SelectedSection>
-        <Select
-          defaultValue={theme}
-          onChange={(value) => dispatch(editTheme(value))}
-          style={{ marginLeft: 20 }}
-        >
-          <Option value="light">Light</Option>
-          <Option value="dark">Dark</Option>
-        </Select>
-      </Styles.SelectedSection>
+      <Select
+        value={language}
+        onChange={(value) => dispatch(editLanguage(value))}
+        style={{ marginLeft: 20 }}
+      >
+        <Option value="en">EN</Option>
+        <Option value="th">TH</Option>
+      </Select>
+    );
+  };
+  const themeDropdown = () => {
+    return (
+      <Select
+        value={theme}
+        onChange={(value) => dispatch(editTheme(value))}
+        style={{ marginLeft: 20 }}
+      >
+        <Option value="light">Light</Option>
+        <Option value="dark">Dark</Option>
+      </Select>
     );
   };
 
   return (
     <>
-      <Styles.MenuContainer theme={theme}>
+      <Styles.MenuContainer>
         {renderLogo()}
         <div style={{ display: `flex`, alignItems: "center" }}>
           {renderMenu()}
@@ -168,7 +175,7 @@ const MenuBar = ({ children }) => {
           {renderThemeDropdown()}
         </div>
       </Styles.MenuContainer>
-      <Styles.PageContainer theme={theme}>{children}</Styles.PageContainer>
+      <Styles.PageContainer>{children}</Styles.PageContainer>
     </>
   );
 };
