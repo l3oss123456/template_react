@@ -17,9 +17,8 @@ export default {
     width: 100vw;
     height: 100vh;
     overflow: auto;
+    word-wrap: break-word;
     transition: all 0.5s ease-out;
-    position: relative;
-    // z-index: 0;
   `,
   MenuContainer: styled.div`
     background-color: ${(props) =>
@@ -102,7 +101,7 @@ export default {
       a {
         font-family: ${(props) => props.theme.fontFamily.primary};
         font-size: ${(props) => props.theme.fontSize.subTitle};
-        // line-height: 2.5rem;
+        // line-height:${(props) => props.theme.fontSize * 1.5}
         color: ${(props) =>
           getLocalStorage(`theme`) === "light"
             ? props.theme.colors.white

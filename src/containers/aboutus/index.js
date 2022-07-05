@@ -14,15 +14,14 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div style={{ display: `flex`, flexDirection: `column` }}>
+    <div style={{}}>
       <div
         style={{
           fontSize: fontSize.mainTitle,
           // lineHeight: fontSize.mainTitle * 1.5,
         }}
       >
-        {/* Main Title */}
-        mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+        Main Title
       </div>
       <div style={{ fontSize: fontSize.title }}>Title</div>
       <div style={{ fontSize: fontSize.subTitle }}>Sub Title</div>
