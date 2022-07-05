@@ -14,7 +14,7 @@ import Styles from "./styles";
 
 const { Option } = Select;
 
-const MenuBar = ({ children }) => {
+const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.language);
   const theme = useSelector((state) => state.theme);
@@ -100,7 +100,9 @@ const MenuBar = ({ children }) => {
           }}
         >
           <header-side-nav-container>
-            <Images name={`icon.logo`} width={60} height={60} />
+            <Link to={`/`}>
+              <Images name={`icon.logo`} width={60} height={60} />
+            </Link>
 
             <CloseOutlined
               onClick={() => setDisplayHamburgerMenu(false)}
@@ -155,7 +157,8 @@ const MenuBar = ({ children }) => {
           marginLeft: 20,
           ...style,
           fontFamily: fontFamily.primary,
-          fontSize: fontSize.subTitle - 10,
+          fontSize: fontSize.text - 10,
+          // fontSize: fontSize.subTitle - 10,
         }}
       >
         <Option value="en">EN</Option>
@@ -172,7 +175,8 @@ const MenuBar = ({ children }) => {
           marginLeft: 20,
           ...style,
           fontFamily: fontFamily.primary,
-          fontSize: fontSize.subTitle - 10,
+          fontSize: fontSize.text - 10,
+          // fontSize: fontSize.subTitle - 10,
         }}
       >
         <Option value="light">Light</Option>
@@ -204,4 +208,4 @@ const MenuBar = ({ children }) => {
     </>
   );
 };
-export default MenuBar;
+export default Layout;

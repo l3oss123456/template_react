@@ -1,14 +1,14 @@
 {
   "menubar.home": {
-    "en": "home",
+    "en": "Home",
     "th": "หน้าแรก"
   },
   "menubar.aboutus": {
-    "en": "about-us",
+    "en": "About-us",
     "th": "เกี่ยวกับเรา"
   },
   "menubar.contact": {
-    "en": "contact",
+    "en": "Contact",
     "th": "ติดต่อ"
   },
   "home.message": {

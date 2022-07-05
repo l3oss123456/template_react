@@ -4,7 +4,7 @@ import { getLocalStorage } from "../../utils/storage";
 
 export default {
   PageContainer: styled.div`
-    font-family: ${(props) => props.theme.fontFamily.primary};
+    font-family: ${(props) => props.theme.fontFamily.primary} !important;
     padding: 130px 8% 20px;
     background-color: ${(props) =>
       getLocalStorage(`theme`) === `light`
@@ -19,6 +19,10 @@ export default {
     overflow: auto;
     word-wrap: break-word;
     transition: all 0.5s ease-out;
+
+    @media ${responsive.xs} {
+      padding: 80px 8% 20px;
+    }
   `,
   MenuContainer: styled.div`
     background-color: ${(props) =>
@@ -132,7 +136,7 @@ export default {
     }
   `,
   Menu: styled.div`
-    font-size: ${(props) => props.theme.fontSize.subTitle};
+    font-size: ${(props) => props.theme.fontSize.text};
     font-family: ${(props) => props.theme.fontFamily.primary};
     cursor: pointer;
     transition: 0.2s ease-in;
