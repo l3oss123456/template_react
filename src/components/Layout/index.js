@@ -109,7 +109,6 @@ const Layout = ({ children }) => {
               style={{
                 cursor: `pointer`,
                 fontSize: `1.2rem`,
-                // color: colors.white,
                 color: theme === `light` ? colors.white : colors.black,
               }}
             />
@@ -157,8 +156,7 @@ const Layout = ({ children }) => {
           marginLeft: 20,
           ...style,
           fontFamily: fontFamily.primary,
-          fontSize: fontSize.text - 10,
-          // fontSize: fontSize.subTitle - 10,
+          fontSize: fontSize.text,
         }}
       >
         <Option value="en">EN</Option>
@@ -175,8 +173,7 @@ const Layout = ({ children }) => {
           marginLeft: 20,
           ...style,
           fontFamily: fontFamily.primary,
-          fontSize: fontSize.text - 10,
-          // fontSize: fontSize.subTitle - 10,
+          fontSize: fontSize.text,
         }}
       >
         <Option value="light">Light</Option>

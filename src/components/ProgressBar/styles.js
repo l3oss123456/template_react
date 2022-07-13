@@ -1,12 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 const progress_move = keyframes`
-//  0% { height: 100px; width: 100px; }
-//  30% { height: 400px; width: 400px; opacity: 1 }
-//  40% { height: 405px; width: 405px; opacity: 0.3; }
-//  100% { height: 100px; width: 100px; opacity: 0.6; }
-
-0% {
+  0% {
     background-position: 0 0;
   }
   100% {
@@ -36,7 +31,8 @@ export default {
       border-bottom-right-radius: 8px;
       border-top-left-radius: 20px;
       border-bottom-left-radius: 20px;
-      background-color: #f42323;
+      background-color: ${(props) =>
+        props.background ? props.background : "black"};
       box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
         inset 0 -2px 6px rgba(0, 0, 0, 0.4);
       position: absolute;
@@ -74,13 +70,16 @@ export default {
         border-bottom-left-radius: 20px;
         overflow: hidden;
       }
-
-      progress-text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: ${(props) => props.theme.colors.white};
-      }
+    }
+    progress-text {
+      position: absolute;
+      left: 50%;
+      top: -2px;
+      z-index: 2;
+      color: ${(props) => {
+        return props.fontColor ? props.fontColor : props.theme.colors.white;
+      }};
+      // color: ${(props) => props.theme.colors.white};
     }
   `,
 };

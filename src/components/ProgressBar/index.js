@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Styles from "./styles";
 
-const ProgressBar = () => {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    if (progress < 100) {
-      setTimeout(() => {
-        setProgress(progress + 1);
-      }, 50);
-    }
-  }, [progress]);
-
+const ProgressBar = ({
+  progress = 0,
+  background = "#f42323",
+  fontColor = "white",
+}) => {
   return (
-    <Styles.Meter progress={progress}>
-      <span>
-        <progress-text>{`${progress}%`}</progress-text>
-      </span>
+    <Styles.Meter
+      progress={progress}
+      background={background}
+      fontColor={fontColor}
+    >
+      <span />
+      <progress-text>{`${progress}%`}</progress-text>
     </Styles.Meter>
   );
 };
