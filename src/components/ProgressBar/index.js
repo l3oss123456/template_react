@@ -3,7 +3,7 @@ import Styles from "./styles";
 
 const ProgressBar = ({
   progress = 0,
-  background = "#f42323",
+  background = "#4561ff",
   fontColor = "white",
 }) => {
   return (

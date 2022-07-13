@@ -1,11 +1,13 @@
 import styled, { keyframes } from "styled-components";
 
-const progress_move = keyframes`
+const move = keyframes`
   0% {
-    background-position: 0 0;
+    background-position: 0% 0%;
+    
   }
   100% {
-    background-position: 50px 100%;
+    background-position: 100% 0%;
+    
   }
 `;
 
@@ -18,10 +20,6 @@ export default {
     padding: 10px;
     box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
     background-position: left;
-    // animation-name: ${progress_move};
-    // animation-duration: 4s;
-    // animation-iteration-count: infinite;
-    // animation: ${progress_move} 5s linear 0s infinite;
 
     span {
       display: block;
@@ -63,7 +61,7 @@ export default {
         );
         z-index: 1;
         background-size: 50px 50px;
-        animation: move 2s linear infinite;
+        animation: ${move} 35s linear infinite;
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
         border-top-left-radius: 20px;
@@ -79,7 +77,6 @@ export default {
       color: ${(props) => {
         return props.fontColor ? props.fontColor : props.theme.colors.white;
       }};
-      // color: ${(props) => props.theme.colors.white};
     }
   `,
 };
