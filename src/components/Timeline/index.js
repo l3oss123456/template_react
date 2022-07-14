@@ -1,8 +1,8 @@
 import React from "react";
 import Styles from "./styles";
 
-const Timeline = () => {
-  const listTimeline = [
+const Timeline = ({
+  listTimeline = [
     <>
       <p>2017</p>
       <p>
@@ -48,7 +48,8 @@ const Timeline = () => {
         eam.
       </p>
     </>,
-  ];
+  ],
+}) => {
   return (
     <Styles.timeline>
       {listTimeline.map((item, index) => {
