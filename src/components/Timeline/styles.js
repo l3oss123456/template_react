@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import responsive from "../../utils/responsive";
+import { getLocalStorage } from "../../utils/storage";
 
 export default {
   timeline: styled.div`
@@ -11,7 +12,7 @@ export default {
       content: "";
       position: absolute;
       left: 50%;
-      background-color: white;
+      background-color: lightgray;
       top: 0;
       bottom: 0;
       width: 6px;
@@ -56,7 +57,8 @@ export default {
   `,
   content: styled.div`
     padding: 5% 10%;
-    background: white;
+    background-color: ${(props) =>
+      getLocalStorage(`theme`) === `light` ? `lightgray` : `white`};
     color: black;
     border-radius: 10px;
     position: relative;
