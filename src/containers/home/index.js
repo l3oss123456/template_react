@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Strings } from "../../cores/locals/index";
 import ProgressBar from "../../components/ProgressBar";
+import Timeline from "../../components/Timeline";
 import Styled from "./styles";
 
 const Home = (props) => {
@@ -25,6 +26,10 @@ const Home = (props) => {
       <div>
         <p>ProgressBar</p>
         <ProgressBar progress={progress} />
+      </div>
+      <div>
+        <p>Timeline</p>
+        <Timeline />
       </div>
     </Styled.HomeContainer>
   );

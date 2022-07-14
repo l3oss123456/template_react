@@ -19,20 +19,7 @@ const Layout = ({ children }) => {
   const language = useSelector((state) => state.language);
   const theme = useSelector((state) => state.theme);
 
-  const [displayHamburgerMenu, setDisplayHamburgerMenu] = useState(false);
-
-  const { width } = useWindowSize();
-
-  useEffect(() => {
-    if (width && width.toString() > responsive.xs) {
-      setDisplayHamburgerMenu(false);
-    }
-  }, [width]);
-
-  const sideNavRef = useRef(null);
-  useOutsideAlerter(sideNavRef, () => {
-    setDisplayHamburgerMenu(false);
-  });
+  const { windowWidth } = useWindowSize();
 
   const listMenu = [
     {
@@ -48,6 +35,19 @@ const Layout = ({ children }) => {
       link: `/contact`,
     },
   ];
+
+  const [displayHamburgerMenu, setDisplayHamburgerMenu] = useState(false);
+
+  useEffect(() => {
+    if (windowWidth && windowWidth.toString() > responsive.xs) {
+      setDisplayHamburgerMenu(false);
+    }
+  }, [windowWidth]);
+
+  const sideNavRef = useRef(null);
+  useOutsideAlerter(sideNavRef, () => {
+    setDisplayHamburgerMenu(false);
+  });
 
   const renderLogo = () => {
     return (
@@ -193,6 +193,7 @@ const Layout = ({ children }) => {
           {renderThemeDropdown()}
         </div>
       </Styles.MenuContainer>
+
       <Styles.PageContainer>
         <div
           style={{
