@@ -1,4 +1,4 @@
-import { getLocalStorage } from "../utils/storage";
+import { getLocalStorage } from "../Utils/storage";
 
 const languageReducer = (
   //   state = process.env.REACT_APP_LANGUAGE_CODE,

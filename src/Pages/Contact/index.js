@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Loading from "../../components/Loading";
-import ProgressBar from "../../components/ProgressBar";
+import Loading from "../../Components/Loading";
+import ProgressBar from "../../Components/ProgressBar";
 
 const Contact = () => {
   const [progress, setProgress] = useState(0);

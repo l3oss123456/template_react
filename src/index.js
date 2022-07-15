@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import "antd/dist/antd.css";
 import * as serviceWorker from "./serviceWorker";
-import Routes from "./cores/routes/index";
+import Routes from "./Routes/index";
 import store from "./store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import theme from "./cores/theme";
+import theme from "./Assets/Theme";
 
 ReactDOM.render(
   <Provider store={store}>

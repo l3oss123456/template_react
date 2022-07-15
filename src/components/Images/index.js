@@ -1,7 +1,7 @@
 import React from "react";
 import * as R from "ramda";
 import { Image } from "antd";
-import image_config from "../../configs/images";
+import image_config from "../../Configs/images";
 
 const Images = (props) => {
   const getSourceLocal = () => {

@@ -1,28 +1,28 @@
-import { setLocalStorage } from "../utils/storage";
+import { setLocalStorage } from "../Utils/storage";
 
 export const set_data = (post) => {
   return {
-    type: "SET_LANGUAGE",
+    type: "SET_THEME",
     data: post,
   };
 };
 export const set_error = (post) => {
   return {
-    type: "SET_LANGUAGE",
+    type: "SET_THEME",
     data: post,
   };
 };
 export const receive_error = (error) => {
   return {
-    type: "LANGUAGE_ERROR",
+    type: "THEME_ERROR",
     error: error,
   };
 };
 
-export const editLanguage = (data) => {
+export const editTheme = (data) => {
   return async (dispatch, getState) => {
     try {
-      setLocalStorage(`language`, data);
+      setLocalStorage(`theme`, data);
       dispatch(set_data(data));
     } catch (error) {
       dispatch(receive_error(error));

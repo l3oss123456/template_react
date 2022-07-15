@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "antd";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import { fontSize } from "../../cores/theme";
-import { useScrollPosition } from "../../helper/global";
+import { fontSize } from "../../Assets/Theme";
+import { useScrollPosition } from "../../Services/Utils/helper";
 
 const AboutUs = () => {
   const [data, setData] = useState([]);
@@ -26,12 +25,12 @@ const AboutUs = () => {
         style={{
           position: "relative",
           display: `flex`,
-          justifyContent: `center`,
-          transition: `0.5s ease-out`,
+          justifyContent: `flex-end`,
+
           top: -20,
         }}
       >
-        <Button
+        <div
           onClick={() => {
             window.scrollTo({
               top: document.body.scrollHeight,
@@ -41,10 +40,20 @@ const AboutUs = () => {
           style={{
             position: "fixed",
             opacity: yAxis >= 0 && yAxis < 100 ? 1 : 0,
+            background: `white`,
+            borderRadius: `50%`,
+            border: `1px solid black`,
+            padding: `5px 10px`,
+            cursor: `pointer`,
+            transition: `0.5s ease-out`,
           }}
         >
-          <DownOutlined /> Scroll To Bottom
-        </Button>
+          <DownOutlined
+            style={{
+              color: `black`,
+            }}
+          />
+        </div>
       </div>
     );
   };
@@ -54,12 +63,12 @@ const AboutUs = () => {
         style={{
           position: "relative",
           display: `flex`,
-          justifyContent: `center`,
-          transition: `0.5s ease-out`,
+          justifyContent: `flex-end`,
+
           // top: -20,
         }}
       >
-        <Button
+        <div
           onClick={() => {
             window.scrollTo({
               top: 0,
@@ -69,10 +78,20 @@ const AboutUs = () => {
           style={{
             // position: "fixed",
             opacity: yAxis >= 1510 ? 1 : 0,
+            background: `white`,
+            borderRadius: `50%`,
+            border: `1px solid black`,
+            padding: `5px 10px`,
+            cursor: `pointer`,
+            transition: `0.5s ease-out`,
           }}
         >
-          <UpOutlined /> Scroll To Top
-        </Button>
+          <UpOutlined
+            style={{
+              color: `black`,
+            }}
+          />
+        </div>
       </div>
     );
   };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Strings } from "../../cores/locals/index";
-import ProgressBar from "../../components/ProgressBar";
-import Timeline from "../../components/Timeline";
+import { Strings } from "../../Services/Utils/Locals/index";
+import ProgressBar from "../../Components/ProgressBar";
+import Timeline from "../../Components/Timeline";
 import Styled from "./styles";
 
 const Home = (props) => {

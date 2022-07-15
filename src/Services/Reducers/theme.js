@@ -1,4 +1,4 @@
-import { getLocalStorage } from "../utils/storage";
+import { getLocalStorage } from "../Utils/storage";
 
 const themeReducer = (
   state = getLocalStorage(`theme`) ? getLocalStorage(`theme`) : `light`,

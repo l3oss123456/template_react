@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import responsive from "../../utils/responsive";
-import { getLocalStorage } from "../../utils/storage";
+import responsive from "../../Services/Utils/responsive";
+import { getLocalStorage } from "../../Services/Utils/storage";
 
 export default {
   timeline: styled.div`
