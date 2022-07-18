@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -58,4 +59,8 @@ export const useScrollPosition = () => {
   }, []);
 
   return offset;
+};
+
+export const useGetTheme = () => {
+  return useSelector((state) => state.theme);
 };

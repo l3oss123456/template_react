@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import responsive from "../../Services/Utils/responsive";
-import { getLocalStorage } from "../../Services/Utils/storage";
+import { useGetTheme } from "../../Services/Utils/helper";
 
 export default {
   PageContainer: styled.div`
     font-family: ${(props) => props.theme.fontFamily.primary} !important;
     padding: 130px 8% 20px;
     background-color: ${(props) =>
-      getLocalStorage(`theme`) === `light`
+      useGetTheme() === `light`
         ? props.theme.colors.white
         : props.theme.colors.primary};
     color: ${(props) =>
-      getLocalStorage(`theme`) === "light"
+      useGetTheme() === `light`
         ? props.theme.colors.black
         : props.theme.colors.white};
     width: 100vw;
@@ -26,7 +26,7 @@ export default {
   `,
   MenuContainer: styled.div`
     background-color: ${(props) =>
-      getLocalStorage(`theme`) === "light"
+      useGetTheme() === `light`
         ? props.theme.colors.black
         : props.theme.colors.blackRussian};
     position: -webkit-fixed;
@@ -81,7 +81,7 @@ export default {
     top: 0;
     right: 0;
     background-color: ${(props) =>
-      getLocalStorage(`theme`) === `light`
+      useGetTheme() === `light`
         ? props.theme.colors.black
         : props.theme.colors.white};
     overflow-x: hidden;
@@ -107,7 +107,7 @@ export default {
         font-size: ${(props) => props.theme.fontSize.subTitle};
         // line-height:${(props) => props.theme.fontSize * 1.5}
         color: ${(props) =>
-          getLocalStorage(`theme`) === "light"
+          useGetTheme() === `light`
             ? props.theme.colors.white
             : props.theme.colors.black};
         margin: 10px 0px;
