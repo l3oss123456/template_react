@@ -63,7 +63,13 @@ const Layout = ({ children }) => {
       <Styles.MenuSection>
         {listMenu.map((menu, index) => {
           return (
-            <Link to={menu.link} key={index}>
+            <Link
+              to={menu.link}
+              key={index}
+              onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              }}
+            >
               <Styles.Menu
                 style={{
                   marginLeft:
@@ -117,7 +123,14 @@ const Layout = ({ children }) => {
           <content-side-nav-container>
             {listMenu.map((menu, index) => {
               return (
-                <Link to={menu.link} key={index}>
+                <Link
+                  to={menu.link}
+                  key={index}
+                  onClick={() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                    setDisplayHamburgerMenu(false);
+                  }}
+                >
                   {menu.name}
                   <div
                     style={{
