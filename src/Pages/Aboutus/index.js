@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { fontSize } from "../../Assets/Theme";
 import { useScrollPosition } from "../../Services/Utils/helper";
 
 const AboutUs = () => {
   const [data, setData] = useState([]);
+  const myRef = useRef(null);
 
   useEffect(() => {
     const setNewData = () => {
@@ -32,6 +33,10 @@ const AboutUs = () => {
       >
         <div
           onClick={() => {
+            // window.scrollTo({
+            //   behavior: "smooth",
+            //   top: myRef.current.offsetTop - 130,
+            // });
             window.scrollTo({
               top: document.body.scrollHeight,
               behavior: "smooth",
@@ -111,6 +116,12 @@ const AboutUs = () => {
       <div style={{ fontSize: fontSize.subTitle }}>Sub Title</div>
       <div style={{ fontSize: fontSize.text }}>Text</div>
       <div style={{ fontSize: fontSize.details }}>Details</div>
+      {data.map((item, index) => {
+        return <div key={index}>{item}</div>;
+      })}
+      <div ref={myRef} style={{ color: `red`, fontSize: 40 }}>
+        yoyo
+      </div>
       {data.map((item, index) => {
         return <div key={index}>{item}</div>;
       })}

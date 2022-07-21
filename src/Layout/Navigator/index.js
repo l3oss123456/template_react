@@ -34,6 +34,10 @@ const Layout = ({ children }) => {
       name: Strings.getString(`menubar.contact`),
       link: `/contact`,
     },
+    {
+      name: `ScrollToAnimation`,
+      link: `/scrollToAnimation`,
+    },
   ];
 
   const [displayHamburgerMenu, setDisplayHamburgerMenu] = useState(false);

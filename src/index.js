@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "antd/dist/antd.css";
+import "aos/dist/aos.css";
 import * as serviceWorker from "./serviceWorker";
 import Routes from "./Routes/index";
 import store from "./store";
