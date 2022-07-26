@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import { fontSize } from "../../Assets/Theme";
+import { fontSize } from "../../Configs/theme";
 import { useScrollPosition } from "../../Services/Utils/helper";
 
 const AboutUs = () => {

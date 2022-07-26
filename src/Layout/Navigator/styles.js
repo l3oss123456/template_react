@@ -1,3 +1,4 @@
+import * as R from "ramda";
 import styled from "styled-components";
 import responsive from "../../Services/Utils/responsive";
 import { useGetTheme } from "../../Services/Utils/helper";
@@ -140,7 +141,12 @@ export default {
     font-family: ${(props) => props.theme.fontFamily.primary};
     cursor: pointer;
     transition: 0.2s ease-in;
-    color: white;
+    color: ${(props) =>
+      R.isNil(props.hamburger) && useGetTheme() === `light`
+        ? props.theme.colors.white
+        : !R.isNil(props.hamburger) && useGetTheme() === `light`
+        ? props.theme.colors.white
+        : props.theme.colors.black};
 
     &:hover {
       opacity: 0.6;

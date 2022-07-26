@@ -8,7 +8,7 @@ import Routes from "./Routes/index";
 import store from "./store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import theme from "./Assets/Theme";
+import theme from "./Configs/theme";
 
 ReactDOM.render(
   <Provider store={store}>

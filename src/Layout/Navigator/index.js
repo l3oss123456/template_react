@@ -9,7 +9,7 @@ import { editLanguage } from "../../Services/Actions/language";
 import { editTheme } from "../../Services/Actions/theme";
 import { useOutsideAlerter, useWindowSize } from "../../Services/Utils/helper";
 import responsive from "../../Services/Utils/responsive";
-import { colors, fontFamily, fontSize } from "../../Assets/Theme";
+import { colors, fontFamily, fontSize } from "../../Configs/theme";
 import Styles from "./styles";
 
 const { Option } = Select;
@@ -135,13 +135,15 @@ const Layout = ({ children }) => {
                     setDisplayHamburgerMenu(false);
                   }}
                 >
-                  {menu.name}
-                  <div
-                    style={{
-                      border: `1px solid lightgray`,
-                      marginTop: 5,
-                    }}
-                  />
+                  <Styles.Menu hanburger>
+                    {menu.name}
+                    <div
+                      style={{
+                        border: `1px solid lightgray`,
+                        marginTop: 5,
+                      }}
+                    />
+                  </Styles.Menu>
                 </Link>
               );
             })}

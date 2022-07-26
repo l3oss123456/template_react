@@ -18,11 +18,11 @@ export const colors = {
   submit: "#2ede3c",
 };
 export const fontFamily = {
-  primary: "ProximaNova-Regular",
-  primaryBold: "Proxima Nova Bold",
+  // primary: "ProximaNova-Regular",
+  // primaryBold: "Proxima Nova Bold",
 
-  // primary: "Roboto-Regular",
-  // primaryBold: "Roboto-Bold",
+  primary: "Roboto-Regular",
+  primaryBold: "Roboto-Bold",
 };
 
 export const fontSize = {
