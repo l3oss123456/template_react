@@ -142,9 +142,9 @@ export default {
     cursor: pointer;
     transition: 0.2s ease-in;
     color: ${(props) =>
-      R.isNil(props.hamburger) && useGetTheme() === `light`
+      R.isNil(props.hamburger)
         ? props.theme.colors.white
-        : !R.isNil(props.hamburger) && useGetTheme() === `light`
+        : useGetTheme() === `light`
         ? props.theme.colors.white
         : props.theme.colors.black};
 

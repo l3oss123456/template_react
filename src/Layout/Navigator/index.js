@@ -35,8 +35,8 @@ const Layout = ({ children }) => {
       link: `/contact`,
     },
     {
-      name: `ScrollToAnimation`,
-      link: `/scrollToAnimation`,
+      name: `AnimationOnScroll`,
+      link: `/animationOnScroll`,
     },
   ];
 

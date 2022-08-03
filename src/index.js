@@ -5,7 +5,7 @@ import "antd/dist/antd.css";
 import "aos/dist/aos.css";
 import * as serviceWorker from "./serviceWorker";
 import Routes from "./Routes/index";
-import store from "./store";
+import store from "./Services/Redux/store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import theme from "./Configs/theme";

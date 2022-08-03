@@ -1,4 +1,9 @@
-import { getLocalStorage } from "../Utils/storage";
+import {
+  GET_LANGUAGE,
+  SET_LANGUAGE,
+  LANGUAGE_ERROR,
+} from "../Actions/language";
+import { getLocalStorage } from "../../Utils/storage";
 
 const languageReducer = (
   //   state = process.env.REACT_APP_LANGUAGE_CODE,
@@ -6,11 +11,11 @@ const languageReducer = (
   action
 ) => {
   switch (action.type) {
-    case "GET_LANGUAGE":
+    case GET_LANGUAGE:
       return state;
-    case "SET_LANGUAGE":
+    case SET_LANGUAGE:
       return action.data;
-    case "LANGUAGE_ERROR":
+    case LANGUAGE_ERROR:
       return action.error;
 
     default:
