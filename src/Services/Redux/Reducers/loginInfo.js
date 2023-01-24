@@ -3,10 +3,10 @@ import {
   SET_LOGIN_INFO,
   LOGIN_INFO_ERROR,
 } from "../Actions/loginInfo";
-import { setLocalStorage } from "../../Utils/storage";
+import { getLocalStorage } from "../../Utils/storage";
 
 const languageReducer = (
-  state = setLocalStorage(`loginInfo`) ? setLocalStorage(`loginInfo`) : null,
+  state = getLocalStorage(`loginInfo`) ? getLocalStorage(`loginInfo`) : null,
   action
 ) => {
   switch (action.type) {

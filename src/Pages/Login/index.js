@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import * as R from "ramda";
+import { Redirect } from "react-router-dom";
 import { Strings } from "../../Services/Utils/Locals/index";
 import { editLoginInfo } from "../../Services/Redux/Actions/loginInfo";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const loginInfo = useSelector((state) => state.loginInfo);
   const [username, setUsername] = useState(``);
   const [password, setPassword] = useState(``);
 
-  const loginInfo = useSelector((state) => state.loginInfo);
-  console.log("loginInfologinInfo;'", loginInfo);
-
   return (
     <div>
+      {!R.isNil(loginInfo) && <Redirect to={`/`} />}
       <span>
         <p>{Strings.getString("login.username")} : </p>
-        <input value={username} onChange={(e) => setUsername(e.target.value)} />
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          autoFocus
+        />
       </span>
       <span>
         <p>{Strings.getString("login.password")} :</p>
@@ -26,8 +31,6 @@ const Login = () => {
       <span>
         <button
           onClick={() => {
-            // const loginInfo = { username: username, password: password };
-            // setLocalStorage(`loginInfo`, JSON.stringify(loginInfo));
             dispatch(
               editLoginInfo({
                 username: username,

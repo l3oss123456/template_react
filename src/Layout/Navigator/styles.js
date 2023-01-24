@@ -41,10 +41,9 @@ export default {
     transition: 0.5s ease-out;
     z-index: 100;
 
-    @media ${responsive.sm} {
+    @media ${responsive.md} {
       padding: 15px 3%;
     }
-
     @media (max-width: 300px) {
       padding: 15px 10px;
       display: flex;
@@ -55,14 +54,14 @@ export default {
   LogoSection: styled.div`
     cursor: pointer;
 
-    @media ${responsive.xs} {
+    @media ${responsive.md} {
       display: none;
     }
   `,
   MenuSection: styled.div`
     display: flex;
 
-    @media (max-width: 576px) {
+    @media ${responsive.md} {
       display: none;
     }
   `,
@@ -70,7 +69,7 @@ export default {
     display: none;
     position: relative;
 
-    @media ${responsive.xs} {
+    @media ${responsive.md} {
       display: flex;
       justify-content: flex-end;
     }
@@ -129,10 +128,11 @@ export default {
       padding: 0% 5% 5%;
       display: flex;
       flex-wrap: wrap;
+      gap: 20px;
     }
   `,
-  SelectedSection: styled.div`
-    @media ${responsive.xs} {
+  BtnSection: styled.div`
+    @media ${responsive.md} {
       display: none;
     }
   `,

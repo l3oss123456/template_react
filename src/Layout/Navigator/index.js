@@ -1,12 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Select } from "antd";
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { Select, Button } from "antd";
+import { MenuOutlined, CloseOutlined, LogoutOutlined } from "@ant-design/icons";
 import Images from "../../Components/Images";
 import { Strings } from "../../Services/Utils/Locals";
 import { editLanguage } from "../../Services/Redux/Actions/language";
 import { editTheme } from "../../Services/Redux/Actions/theme";
+import { clearLoginInfo } from "../../Services/Redux/Actions/loginInfo";
 import { useOutsideAlerter, useWindowSize } from "../../Services/Utils/helper";
 import responsive from "../../Services/Utils/responsive";
 import { colors, fontFamily, fontSize } from "../../Configs/theme";
@@ -79,6 +80,7 @@ const Layout = ({ children }) => {
                   marginLeft:
                     index > 0 && index < listMenu.length ? `20px` : null,
                 }}
+                disabled
               >
                 {menu.name}
               </Styles.Menu>
@@ -135,7 +137,7 @@ const Layout = ({ children }) => {
                     setDisplayHamburgerMenu(false);
                   }}
                 >
-                  <Styles.Menu hanburger>
+                  <Styles.Menu hamburger>
                     {menu.name}
                     <div
                       style={{
@@ -151,21 +153,23 @@ const Layout = ({ children }) => {
 
           <footer-side-nav-container>
             {languageDropdown({ marginLeft: 0 })}
-            {themeDropdown()}
-            {/* <button>login</button> */}
+            {themeDropdown({ marginLeft: 0 })}
+            {logoutBtn({ marginLeft: 0 })}
           </footer-side-nav-container>
         </Styles.SideNav>
       </>
     );
   };
   const renderLanguageDropdown = () => {
-    return (
-      <Styles.SelectedSection>{languageDropdown()}</Styles.SelectedSection>
-    );
+    return <Styles.BtnSection>{languageDropdown()}</Styles.BtnSection>;
   };
   const renderThemeDropdown = () => {
-    return <Styles.SelectedSection>{themeDropdown()}</Styles.SelectedSection>;
+    return <Styles.BtnSection>{themeDropdown()}</Styles.BtnSection>;
   };
+  const renderLogoutBtn = () => {
+    return <Styles.BtnSection>{logoutBtn()}</Styles.BtnSection>;
+  };
+
   const languageDropdown = (style = {}) => {
     return (
       <Select
@@ -200,6 +204,25 @@ const Layout = ({ children }) => {
       </Select>
     );
   };
+  const logoutBtn = (style = {}) => {
+    return (
+      <Button
+        icon={<LogoutOutlined />}
+        onClick={() => {
+          dispatch(clearLoginInfo());
+          window.location.href = "/login";
+        }}
+        style={{
+          marginLeft: 20,
+          ...style,
+          fontFamily: fontFamily.primary,
+          fontSize: fontSize.text,
+        }}
+      >
+        Logout
+      </Button>
+    );
+  };
 
   return (
     <>
@@ -210,6 +233,7 @@ const Layout = ({ children }) => {
           {renderHamburgerMenu()}
           {renderLanguageDropdown()}
           {renderThemeDropdown()}
+          {renderLogoutBtn()}
         </div>
       </Styles.MenuContainer>
 

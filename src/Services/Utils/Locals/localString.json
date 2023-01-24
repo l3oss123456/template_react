@@ -1,4 +1,12 @@
 {
+  "no-login.message": {
+    "en": "You are not Login!",
+    "th": "คุณยังไม่ได้เข้าสู่ระบบ!"
+  },
+  "no-login.description": {
+    "en": "Please Login before enter website!",
+    "th": "กรุณาเข้าสู่ระบบก่อนเข้าเว็บไซต์"
+  },
   "login.username": {
     "en": "Username",
     "th": "ชื่อผู้ใช้งาน"
