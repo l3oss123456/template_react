@@ -5,7 +5,7 @@ import {
 } from "../Actions/language";
 import { getLocalStorage } from "../../Utils/storage";
 
-const languageReducer = (
+const loginInfoReducer = (
   //   state = process.env.REACT_APP_LANGUAGE_CODE,
   state = getLocalStorage(`language`) ? getLocalStorage(`language`) : `en`,
   action
@@ -22,4 +22,4 @@ const languageReducer = (
       return state;
   }
 };
-export default languageReducer;
+export default loginInfoReducer;

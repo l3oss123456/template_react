@@ -1,4 +1,16 @@
 {
+  "login.username": {
+    "en": "Username",
+    "th": "ชื่อผู้ใช้งาน"
+  },
+  "login.password": {
+    "en": "Password",
+    "th": "รหัสผ่าน"
+  },
+  "button.login.confirm": {
+    "en": "confirm",
+    "th": "ยืนยัน"
+  },
   "menubar.home": {
     "en": "Home",
     "th": "หน้าแรก"
