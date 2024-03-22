@@ -8,7 +8,7 @@ import { Strings } from "../../Services/Utils/Locals";
 import { editLanguage } from "../../Services/Redux/Actions/language";
 import { editTheme } from "../../Services/Redux/Actions/theme";
 import { clearLoginInfo } from "../../Services/Redux/Actions/loginInfo";
-import { useOutsideAlerter, useWindowSize } from "../../Services/Utils/helper";
+import helper from "../../Services/Utils/helper";
 import responsive from "../../Services/Utils/responsive";
 import { colors, fontFamily, fontSize } from "../../Configs/theme";
 import Styles from "./styles";
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
   const language = useSelector((state) => state.language);
   const theme = useSelector((state) => state.theme);
 
-  const { windowWidth } = useWindowSize();
+  const { windowWidth } = helper.useWindowSize();
 
   const listMenu = [
     {
@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
   }, [windowWidth]);
 
   const sideNavRef = useRef(null);
-  useOutsideAlerter(sideNavRef, () => {
+  helper.useOutsideAlerter(sideNavRef, () => {
     setDisplayHamburgerMenu(false);
   });
 

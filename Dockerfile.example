@@ -1,0 +1,25 @@
+# Use an official Node.js runtime as the base image
+FROM node:16
+
+# Set the working directory in the container
+# WORKDIR /usr/src/web_admin_v3
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 3001
+
+# Install dependencies
+RUN npm install
+RUN NODE_OPTIONS="--max-old-space-size=8192" npm run build
+RUN npm install -g serve
+
+# Command to run the application
+CMD ["sh", "-c", "serve -s build"]

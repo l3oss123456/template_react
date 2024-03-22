@@ -1,42 +1,33 @@
 {
-  "no-login.message": {
-    "en": "You are not Login!",
-    "th": "คุณยังไม่ได้เข้าสู่ระบบ!"
+  "homePage.header": {
+    "en": "Lottery Eng",
+    "th": "Lottery Thai",
+    "lao": "Lottery Laos",
+    "ho": "Lottery Hanoi"
   },
-  "no-login.description": {
-    "en": "Please Login before enter website!",
-    "th": "กรุณาเข้าสู่ระบบก่อนเข้าเว็บไซต์"
+  "homePage.headerDate": {
+    "en": "Lottery",
+    "th": "หวย",
+    "lao": "ງວດປະຈຳວັນທີ່ {date}",
+    "ho": "ho"
   },
-  "login.username": {
-    "en": "Username",
-    "th": "ชื่อผู้ใช้งาน"
+
+  "randomComponent.resultText": {
+    "en": "number {number}",
+    "th": "เลข {number}",
+    "lao": "ເລກ {number} ໂຕ",
+    "ho": "ho"
   },
-  "login.password": {
-    "en": "Password",
-    "th": "รหัสผ่าน"
+  "randomComponent.lastTwoResultText": {
+    "en": "number {number}",
+    "th": "เลข {number}",
+    "lao": "ເລກ {number} ໂຕເທິ່ງ",
+    "ho": "ho"
   },
-  "button.login.confirm": {
-    "en": "confirm",
-    "th": "ยืนยัน"
-  },
-  "menubar.home": {
-    "en": "Home",
-    "th": "หน้าแรก"
-  },
-  "menubar.aboutus": {
-    "en": "About-us",
-    "th": "เกี่ยวกับเรา"
-  },
-  "menubar.contact": {
-    "en": "Contact",
-    "th": "ติดต่อ"
-  },
-  "home.message": {
-    "en": "Welcome to home page",
-    "th": "ยินดีต้อนรับสู่หน้าโฮม"
-  },
-  "home.userMessage": {
-    "en": "Welcome {user}",
-    "th": "ยินดีต้อนรับ {user}"
+  "randomComponent.firstTwoResultText": {
+    "en": "number {number}",
+    "th": "เลข {number}",
+    "lao": "ເລກ {number} ໂຕລຸ່ມ",
+    "ho": "ho"
   }
 }

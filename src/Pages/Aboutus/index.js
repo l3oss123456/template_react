@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { fontSize } from "../../Configs/theme";
-import { useScrollPosition } from "../../Services/Utils/helper";
+import helper from "../../Services/Utils/helper";
 
 const AboutUs = () => {
   const [data, setData] = useState([]);
@@ -18,7 +18,7 @@ const AboutUs = () => {
     setNewData();
   }, []);
 
-  const yAxis = useScrollPosition();
+  const yAxis = helper.useScrollPosition();
 
   const renderScrollToBottomButton = () => {
     return (

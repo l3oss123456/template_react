@@ -25,6 +25,11 @@ export const fontFamily = {
   primaryBold: "Roboto-Bold",
 };
 
+export const textThemeColor = {
+  light: "#000000",
+  dark: "#ffffff",
+};
+
 export const fontSize = {
   mainTitle: `clamp(38px, 5vw, 42px)`,
   title: `clamp(24px, 2.5vw, 28px)`,
@@ -36,5 +41,6 @@ export const fontSize = {
 export default {
   colors,
   fontFamily,
+  textThemeColor,
   fontSize,
 };

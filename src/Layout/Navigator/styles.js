@@ -1,18 +1,18 @@
 import * as R from "ramda";
 import styled from "styled-components";
 import responsive from "../../Services/Utils/responsive";
-import { useGetTheme } from "../../Services/Utils/helper";
+import helper from "../../Services/Utils/helper";
 
 export default {
   PageContainer: styled.div`
     font-family: ${(props) => props.theme.fontFamily.primary} !important;
     padding: 130px 8% 20px;
     background-color: ${(props) =>
-      useGetTheme() === `light`
+      helper.useGetTheme() === `light`
         ? props.theme.colors.white
         : props.theme.colors.primary};
     color: ${(props) =>
-      useGetTheme() === `light`
+      helper.useGetTheme() === `light`
         ? props.theme.colors.black
         : props.theme.colors.white};
     width: 100vw;
@@ -27,7 +27,7 @@ export default {
   `,
   MenuContainer: styled.div`
     background-color: ${(props) =>
-      useGetTheme() === `light`
+      helper.useGetTheme() === `light`
         ? props.theme.colors.black
         : props.theme.colors.blackRussian};
     position: -webkit-fixed;
@@ -81,7 +81,7 @@ export default {
     top: 0;
     right: 0;
     background-color: ${(props) =>
-      useGetTheme() === `light`
+      helper.useGetTheme() === `light`
         ? props.theme.colors.black
         : props.theme.colors.white};
     overflow-x: hidden;
@@ -107,7 +107,7 @@ export default {
         font-size: ${(props) => props.theme.fontSize.subTitle};
         // line-height:${(props) => props.theme.fontSize * 1.5}
         color: ${(props) =>
-          useGetTheme() === `light`
+          helper.useGetTheme() === `light`
             ? props.theme.colors.white
             : props.theme.colors.black};
         margin: 10px 0px;
@@ -144,7 +144,7 @@ export default {
     color: ${(props) =>
       R.isNil(props.hamburger)
         ? props.theme.colors.white
-        : useGetTheme() === `light`
+        : helper.useGetTheme() === `light`
         ? props.theme.colors.white
         : props.theme.colors.black};
 

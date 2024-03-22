@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { useGetTheme } from "../../Services/Utils/helper";
+import helper from "../../Services/Utils/helper";
 
 export default {
   boxes: styled.div`
     margin: 20px;
     margin-top: 150px;
     background-color: ${(props) =>
-      useGetTheme() === `light`
+      helper.useGetTheme() === `light`
         ? props.theme.colors.submit
         : props.theme.colors.neonBlue90}
     };
