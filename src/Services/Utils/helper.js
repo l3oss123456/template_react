@@ -192,4 +192,20 @@ export default {
     }
     return "";
   },
+  ConvertJsonToFormData: (json_data = {}) => {
+    const form_data = new FormData();
+
+    Object.keys(json_data).forEach((key) => {
+      if (
+        !Array.isArray(json_data[key])
+        // && typeof json_data[key] !== "object"
+      ) {
+        form_data.append(key, json_data[key]);
+      } else {
+        form_data.append(key, JSON.stringify(json_data[key]));
+      }
+    });
+
+    return form_data;
+  },
 };
