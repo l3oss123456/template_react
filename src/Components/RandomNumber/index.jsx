@@ -42,7 +42,7 @@ const RandomNumber = () => {
       },
     ],
     currentNumberPosition: 1,
-    isStartRandom: true,
+    isStartRandom: false,
     todayLottery: {},
     isFinishedUpdateRandomPositionFromBackend: false,
   };
@@ -101,10 +101,10 @@ const RandomNumber = () => {
 
           setRandNumber(_randNumber);
           setCurrentNumberPosition(currentNumberPosition + 1);
-          // updateLotteryRandomCurrentPosition({
-          //   current_random_position: currentNumberPosition,
-          //   lottery_type: language,
-          // }).then(() => {});
+          updateLotteryRandomCurrentPosition({
+            current_random_position: currentNumberPosition + 1,
+            lottery_type: language,
+          }).then(() => {});
 
           if (currentNumberPosition === randNumber.length) {
             setIsStartRandom(false);
@@ -151,32 +151,32 @@ const RandomNumber = () => {
 
   async function handleGetLotteryRandomConfig({ todayLottery = {} }) {
     try {
-      const resp = await getLotteryRandomConfig({
-        lottery_type: language,
-      });
-
-      if (resp.data.code === 1000) {
-        const data = resp.data.data.results;
-        let _randNumber = [...randNumber];
-
-        randNumber.forEach((item, index) => {
-          if (item.position <= data.current_random_position) {
-            _randNumber[index] = {
-              ..._randNumber[index],
-              number: todayLottery.number.toString()[index],
-              status: "finished",
-            };
-          }
+      console.log("isStartRandomisStartRandom", isStartRandom);
+      if (isStartRandom === true) {
+        const resp = await getLotteryRandomConfig({
+          lottery_type: language,
         });
 
-        setRandNumber(_randNumber);
-        setCurrentNumberPosition(
-          data.current_random_position < randNumber.length
-            ? data.current_random_position
-            : 6
-        );
-        setIsStartRandom(data.is_start_random);
-        setIsFinishedUpdateRandomPositionFromBackend(true);
+        if (resp.data.code === 1000) {
+          const data = resp.data.data.results;
+          console.log("datadata", data);
+          let _randNumber = [...randNumber];
+
+          randNumber.forEach((item, index) => {
+            if (item.position <= data.current_random_position) {
+              _randNumber[index] = {
+                ..._randNumber[index],
+                number: todayLottery.number.toString()[index],
+                status: "finished",
+              };
+            }
+          });
+
+          setRandNumber(_randNumber);
+          setCurrentNumberPosition(data.current_random_position);
+          setIsStartRandom(data.is_start_random);
+          setIsFinishedUpdateRandomPositionFromBackend(true);
+        }
       }
     } catch (error) {
       console.log("error handleGetLotteryRandomConfig: ", error);
