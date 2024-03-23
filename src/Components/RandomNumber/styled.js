@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import helper from "../../Services/Utils/helper";
 import responsive from "../../Services/Utils/responsive";
 
 export default {
@@ -19,12 +18,6 @@ export default {
     }
   `,
 
-  DateContainer: styled.div`
-    margin-bottom: 10px;
-    font-size: ${(props) => props.theme.fontSize.title};
-    font-weight: 500;
-  `,
-
   RandomNumberContainer: styled.div`
     display: flex;
     flex-flow: row wrap;
@@ -34,33 +27,25 @@ export default {
   NumberContainer: styled.div`
     background: ${(props) =>
       props.status === "wait"
-        ? "gray"
+        ? "white"
         : props.status === "random"
         ? "white"
         : "lightgreen"};
-    border: 1px solid black;
+    // border: 1px solid #f0f0f0;
+    border: 1px solid
+      ${(props) =>
+        props.status === "wait"
+          ? "blue"
+          : props.status === "random"
+          ? "blue"
+          : "gray"};
+    border-radius: 10px;
     width: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    width: 60px;
     height: 50px;
-  `,
-
-  ResultContainer: styled.div`
-    width: 100%;
-    display: flex;
-    gap: 0px;
-  `,
-
-  ResultSection: styled.div`
-    width: 50%;
-    height: 50px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${(props) => props.theme.fontSize.text};
-    color: ${(props) => props.theme.textThemeColor[helper.useGetTheme()]};
+    margin: 0px 2px;
   `,
 };

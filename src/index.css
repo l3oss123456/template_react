@@ -32,3 +32,31 @@ code {
   src: local("Roboto-Bold"),
     url("./Assets/Fonts/Roboto/Roboto-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Kanit";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/public/font/Kanit/Kanit-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kanit";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/public/font/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: normal;
+  src: url("/public/font/Kanit/Kanit-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kanit";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/public/font/Kanit/Kanit-Bold.ttf") format("truetype");
+}
