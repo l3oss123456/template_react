@@ -36,7 +36,12 @@ import Layout from "../Layout/Navigator";
 const renderComponent = (props) => {
   const { component: Component } = props;
 
-  return <Component {...Component} />;
+  return (
+    <Layout>
+      <Component {...Component} />
+    </Layout>
+  );
+  // return <Component {...Component} />;
 };
 
 const GuardRoutes = (props) => {

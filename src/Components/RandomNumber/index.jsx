@@ -109,7 +109,7 @@ const RandomNumber = () => {
           if (currentNumberPosition === randNumber.length) {
             setIsStartRandom(false);
           }
-        }, 10000);
+        }, 2000);
 
         return () => clearInterval(timer);
       }
@@ -120,15 +120,28 @@ const RandomNumber = () => {
     isFinishedUpdateRandomPositionFromBackend,
   ]);
 
-  const handleConnectSockerIo = () => {
+  const handleConnectSockerIo = async () => {
     try {
+      let _start_random = null;
       const socket = helper.connectSocketio();
       socket.on("startRandom", (data) => {
         if (data && data.start_random) {
           handleClearData();
-          setIsStartRandom(data.start_random);
+          _start_random = data.start_random;
+          // setIsStartRandom(data.start_random);
         }
       });
+
+      if (R.isNil(_start_random)) {
+        const resp = await getLotteryRandomConfig({
+          lottery_type: language,
+        });
+        if (resp.data.code === 1000) {
+          _start_random = resp.data.data.results.is_start_random;
+        }
+      }
+      console.log("_start_random_start_random", _start_random);
+      setIsStartRandom(_start_random);
     } catch (error) {
       console.log("error handleConnectSockerIo:", error);
     }
@@ -151,7 +164,6 @@ const RandomNumber = () => {
 
   async function handleGetLotteryRandomConfig({ todayLottery = {} }) {
     try {
-      console.log("isStartRandomisStartRandom", isStartRandom);
       if (isStartRandom === true) {
         const resp = await getLotteryRandomConfig({
           lottery_type: language,
