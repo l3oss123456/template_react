@@ -11,7 +11,7 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        {/* <Route exact path="/login" component={() => <Login />} /> */}
+        <Route exact path="/login" component={() => <Login />} />
         {/* <Route exact path="/" component={() => <Home />} />
           <Route exact path="/about-us" component={() => <AboutUs />} />
           <Route exact path="/contact" component={() => <Contact />} />
