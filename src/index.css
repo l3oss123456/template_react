@@ -55,7 +55,7 @@ code {
 }
 
 @font-face {
-  font-family: "Kanit";
+  font-family: "Kanit-Bold";
   font-weight: 600;
   font-style: normal;
   src: url("/public/font/Kanit/Kanit-Bold.ttf") format("truetype");

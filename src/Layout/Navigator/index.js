@@ -48,6 +48,17 @@ const Layout = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (displayHamburgerMenu === true) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = ""; // Re-enable scrolling when loading is false
+    }
+    return () => {
+      document.body.style.overflow = ""; // Re-enable scrolling when component unmounts
+    };
+  }, [displayHamburgerMenu]);
+
+  useEffect(() => {
     if (windowWidth && windowWidth.toString() > responsive.xs) {
       setDisplayHamburgerMenu(false);
     }
@@ -158,7 +169,7 @@ const Layout = ({ children }) => {
           <footer-side-nav-container>
             {languageDropdown({ marginLeft: 0 })}
             {themeDropdown({ marginLeft: 0 })}
-            {logoutBtn({ marginLeft: 0 })}
+            {/* {logoutBtn({ marginLeft: 0 })} */}
           </footer-side-nav-container>
         </Styles.SideNav>
       </>

@@ -21,8 +21,8 @@ export const fontFamily = {
   // primary: "ProximaNova-Regular",
   // primaryBold: "Proxima Nova Bold",
 
-  primary: "Roboto-Regular",
-  primaryBold: "Roboto-Bold",
+  primary: "Kanit",
+  primaryBold: "Kanit-Bold",
 };
 
 export const textThemeColor = {

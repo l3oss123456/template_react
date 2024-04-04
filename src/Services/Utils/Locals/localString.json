@@ -1,43 +1,43 @@
 {
   "homePage.header": {
-    "eng": "Lottery Eng",
+    "en": "Lottery Eng",
     "th": "Lottery Thai",
     "laos": "Lottery Laos",
     "hanoi": "Lottery Hanoi"
   },
   "homePage.headerDate": {
-    "eng": "Lottery",
+    "en": "Lottery",
     "th": "หวย",
     "laos": "ງວດປະຈຳວັນທີ່ {date}",
     "hanoi": "ho"
   },
 
   "randomComponent.resultText": {
-    "eng": "number {number}",
+    "en": "number {number}",
     "th": "เลข {number}",
     "laos": "ເລກ {number} ໂຕ",
     "hanoi": "ho"
   },
   "randomComponent.lastTwoResultText": {
-    "eng": "number {number}",
+    "en": "number {number}",
     "th": "เลข {number}",
     "laos": "ເລກ {number} ໂຕເທິ່ງ",
     "hanoi": "ho"
   },
   "randomComponent.firstTwoResultText": {
-    "eng": "number {number}",
+    "en": "number {number}",
     "th": "เลข {number}",
     "laos": "ເລກ {number} ໂຕລຸ່ມ",
     "hanoi": "ho"
   },
   "showPrevResultLotter.header": {
-    "eng": "",
+    "en": "",
     "th": "",
     "laos": "ຜົນການອອກເລກລາງວັນ",
     "hanoi": ""
   },
   "showPrevResultLotter.headColumn1": {
-    "eng": "",
+    "en": "",
     "th": "",
     "laos": "ງວດວັນທີ່",
     "hanoi": ""
