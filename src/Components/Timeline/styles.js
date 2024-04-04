@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import responsive from "../../Services/Utils/responsive";
-import { useGetTheme } from "../../Services/Utils/helper";
+import helper from "../../Services/Utils/helper";
 
 export default {
   timeline: styled.div`
@@ -58,7 +58,7 @@ export default {
   content: styled.div`
     padding: 5% 10%;
     background-color: ${(props) =>
-      useGetTheme() === `light` ? `lightgray` : `white`};
+      helper.useGetTheme() === `light` ? `lightgray` : `white`};
     color: black;
     border-radius: 10px;
     position: relative;

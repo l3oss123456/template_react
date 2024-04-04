@@ -35,13 +35,17 @@ const Layout = ({ children }) => {
       name: Strings.getString(`menubar.contact`),
       link: `/contact`,
     },
-    {
-      name: `AnimationOnScroll`,
-      link: `/animationOnScroll`,
-    },
+    // {
+    //   name: `AnimationOnScroll`,
+    //   link: `/animationOnScroll`,
+    // },
   ];
 
   const [displayHamburgerMenu, setDisplayHamburgerMenu] = useState(false);
+
+  useEffect(() => {
+    // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     if (windowWidth && windowWidth.toString() > responsive.xs) {
@@ -233,7 +237,7 @@ const Layout = ({ children }) => {
           {renderHamburgerMenu()}
           {renderLanguageDropdown()}
           {renderThemeDropdown()}
-          {renderLogoutBtn()}
+          {/* {renderLogoutBtn()} */}
         </div>
       </Styles.MenuContainer>
 

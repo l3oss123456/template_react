@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useGetTheme } from "../../Services/Utils/helper";
+import helper from "../../Services/Utils/helper";
 
 export default {
   container: styled.div`
@@ -15,7 +15,7 @@ export default {
     opacity: ${(props) => (props.opacity ? props.opacity : 0.7)};
     transition: 0.5s all ease-out;
     background-color: ${(props) => {
-      return useGetTheme() === `light`
+      return helper.useGetTheme() === `light`
         ? props.theme.colors.white
         : props.theme.colors.luckyPoint;
     }};

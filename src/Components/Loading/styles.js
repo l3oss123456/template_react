@@ -15,9 +15,10 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    // height: 100%;
+    height: 10000vh;
     opacity: 0.2;
-    z-index: 999;
+    z-index: 99999;
     background-color: ${(props) => props.theme.colors.black};
   `,
   Rotate: styled.div`
