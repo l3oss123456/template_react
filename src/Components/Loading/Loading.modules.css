@@ -1,3 +1,6 @@
+.no-scroll {
+  overflow: hidden;
+}
 .rotate {
   -webkit-animation: rotating 2s linear infinite;
   -o-animation: rotating 2s linear infinite;

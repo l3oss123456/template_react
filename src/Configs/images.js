@@ -1,7 +1,7 @@
 export default {
   icon: {
     logo: {
-      image: require("../Assets/Images/Logo/super_coconut.png"),
+      image: require("../Assets/Images/shimakaze.png"),
       width: 60,
       height: 60,
     },

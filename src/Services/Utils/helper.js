@@ -67,145 +67,165 @@ const month_full = [
   },
 ];
 
-export default {
-  connectSocketio() {
-    return io(process.env.REACT_APP_API_ENPOINT, {
-      // auth: { Authorization: this.getCookie("access_token") },
-    });
-  },
-  useWindowSize: () => {
-    const [windowSize, setWindowSize] = useState({
-      windowWidth: undefined,
-      windowHeight: undefined,
-    });
+const connectSocketio = () => {
+  return io(process.env.REACT_APP_API_ENPOINT, {
+    // auth: { Authorization: this.getCookie("access_token") },
+  });
+};
 
-    useEffect(() => {
-      // Handler to call on window resize
-      function handleResize() {
-        // Set window width/height to state
-        setWindowSize({
-          windowWidth: window.innerWidth,
-          windowHeight: window.innerHeight,
-        });
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    windowWidth: undefined,
+    windowHeight: undefined,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+
+  return windowSize;
+};
+
+const useOutsideAlerter = (ref, handleOutsideClick) => {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        handleOutsideClick();
       }
-      // Add event listener
-      window.addEventListener("resize", handleResize);
-      // Call handler right away so state gets updated with initial window size
-      handleResize();
-      // Remove event listener on cleanup
-      return () => window.removeEventListener("resize", handleResize);
-    }, []); // Empty array ensures that effect is only run on mount
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref]);
+};
 
-    return windowSize;
-  },
-  useOutsideAlerter: (ref, handleOutsideClick) => {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          handleOutsideClick();
-        }
-      }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ref]);
-  },
-  useScrollPosition: () => {
-    const [offset, setOffset] = useState(0);
+const useScrollPosition = () => {
+  const [offset, setOffset] = useState(0);
 
-    useEffect(() => {
-      const onScroll = () => setOffset(window.pageYOffset);
-      // clean up code
-      window.removeEventListener("scroll", onScroll);
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+  useEffect(() => {
+    const onScroll = () => setOffset(window.pageYOffset);
+    // clean up code
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    return offset;
-  },
-  useGetTheme: () => {
-    return useSelector((state) => state.theme);
-  },
-  getCurrentLanguage: () => {
-    const state = store.getState();
-    return state.language;
-  },
-  getCurrentTime: () => {
-    // const GetCurrentLanguage = () => useSelector((state) => state.language);
-    // const languageCode = GetCurrentLanguage().toLowerCase();
-    const state = store.getState();
-    const languageCode = state.language;
+  return offset;
+};
 
-    let currentTime = null;
+const useGetTheme = () => {
+  return useSelector((state) => state.theme);
+};
 
-    if (languageCode === "en" || languageCode === "th") {
-      currentTime = new Date(
-        new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" })
-      );
-    } else if (languageCode === "lao") {
-      currentTime = new Date(
-        new Date().toLocaleString("en-US", { timeZone: "Asia/Vientiane" })
-      );
-    } else if (languageCode === "ho") {
-      currentTime = new Date(
-        new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
-      );
+const getCurrentLanguage = () => {
+  const state = store.getState();
+  return state.language;
+};
+
+const getCurrentTime = () => {
+  // const GetCurrentLanguage = () => useSelector((state) => state.language);
+  // const languageCode = GetCurrentLanguage().toLowerCase();
+  const state = store.getState();
+  const languageCode = state.language;
+
+  let currentTime = null;
+
+  if (languageCode === "en" || languageCode === "th") {
+    currentTime = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" })
+    );
+  } else if (languageCode === "lao") {
+    currentTime = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Asia/Vientiane" })
+    );
+  } else if (languageCode === "ho") {
+    currentTime = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" })
+    );
+  } else {
+    currentTime = new Date();
+  }
+
+  return currentTime;
+};
+
+const getMonth = (month_number = null) => {
+  if (R.isNil(month_number)) {
+    return null;
+  }
+
+  // const GetCurrentLanguage = () => useSelector((state) => state.language);
+  // const languageCode = GetCurrentLanguage().toLowerCase();
+  const state = store.getState();
+  const languageCode = state.language;
+
+  if (languageCode === "laos") {
+    return month_full[month_number - 1][languageCode];
+  }
+};
+
+const getCookie = (params) => {
+  let name = params + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+};
+
+const ConvertJsonToFormData = (json_data = {}) => {
+  const form_data = new FormData();
+
+  Object.keys(json_data).forEach((key) => {
+    if (
+      !Array.isArray(json_data[key])
+      // && typeof json_data[key] !== "object"
+    ) {
+      form_data.append(key, json_data[key]);
     } else {
-      currentTime = new Date();
+      form_data.append(key, JSON.stringify(json_data[key]));
     }
+  });
 
-    return currentTime;
-  },
-  getMonth: (month_number = null) => {
-    if (R.isNil(month_number)) {
-      return null;
-    }
+  return form_data;
+};
 
-    // const GetCurrentLanguage = () => useSelector((state) => state.language);
-    // const languageCode = GetCurrentLanguage().toLowerCase();
-    const state = store.getState();
-    const languageCode = state.language;
-
-    if (languageCode === "laos") {
-      return month_full[month_number - 1][languageCode];
-    }
-  },
-  getCookie(params) {
-    let name = params + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  },
-  ConvertJsonToFormData: (json_data = {}) => {
-    const form_data = new FormData();
-
-    Object.keys(json_data).forEach((key) => {
-      if (
-        !Array.isArray(json_data[key])
-        // && typeof json_data[key] !== "object"
-      ) {
-        form_data.append(key, json_data[key]);
-      } else {
-        form_data.append(key, JSON.stringify(json_data[key]));
-      }
-    });
-
-    return form_data;
-  },
+export default {
+  connectSocketio,
+  useWindowSize,
+  useOutsideAlerter,
+  useScrollPosition,
+  useGetTheme,
+  getCurrentLanguage,
+  getCurrentTime,
+  getMonth,
+  getCookie,
+  ConvertJsonToFormData,
 };

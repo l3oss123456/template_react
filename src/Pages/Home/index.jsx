@@ -1,10 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Strings } from "../../Services/Utils/Locals/index";
-import ProgressBar from "../../Components/ProgressBar";
-import Carousel from "../../Components/Carousel";
-import Timeline from "../../Components/Timeline";
-import Styled from "./styles";
-import Images from "../../Components/Images";
+import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getAllProduct } from "../../Services/Axios/Api/product/product";
 import ProductCard from "../../Components/ProductCard";
@@ -28,6 +22,7 @@ const Home = (props) => {
     try {
       setIsLoading(true);
       const resp = await getAllProduct({ params: params });
+
       if (resp.data.code === 1000) {
         const data = resp.data.data.results;
 
@@ -43,8 +38,8 @@ const Home = (props) => {
 
   return (
     <div>
-      <Loading loading={isLoading} />
       <ProductCard listProduct={listProduct} />
+      <Loading loading={isLoading} />
     </div>
   );
 };
